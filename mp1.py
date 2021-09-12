@@ -58,6 +58,7 @@ class PuzzleState:
         print(self)
 
     def can_move(self, direction):
+        # pylint: disable=no-self-use
         """ TODO """
         if direction == 'up':
             print('Can I move up?')

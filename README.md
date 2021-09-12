@@ -1,4 +1,5 @@
 [![Unit Tests](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/python-test.yml/badge.svg)](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/python-test.yml)
+[![Pylint](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/pylint.yml/badge.svg)](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/pylint.yml)
 
 # Artificial Intelligence 
 ## Machine Problem 1 – A* for Sliding Puzzle
