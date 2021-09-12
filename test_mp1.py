@@ -16,6 +16,20 @@ class TestPuzzleState(unittest.TestCase):
         actual = PuzzleState.SOLVED_PUZZLE
         numpy.testing.assert_allclose(desired, actual)
 
+    def test_compute_heuristic_cost(self):
+        """ TODO """
+
+    def test_is_goal(self):
+        """ TODO """
+
+    def test_show_path(self):
+        """ TODO """
+
+    def test_can_move(self):
+        """ TODO """
+
+    def test_gen_next_state(self):
+        """ TODO """
 
 if __name__ == '__main__':
     unittest.main()

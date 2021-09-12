@@ -15,7 +15,6 @@ class PuzzleState:
     SOLVED_PUZZLE = np.arange(9).reshape((3, 3))
 
     def __init__(self, conf, g, pred_state):
-        self.hcost = None
         self.puzzle = conf  # Configuration of the state
         self.gcost = g  # Path cost
         self._compute_heuristic_cost()  # Set heuristic cost
@@ -28,7 +27,9 @@ class PuzzleState:
         return tuple(self.puzzle.ravel()).__hash__()
 
     def _compute_heuristic_cost(self):
+        """ TODO: Actually calculate this! """
         """ Updates the heuristic function value for use in A* """
+        self.hcost = 5
 
     def is_goal(self):
         """ Checks to see if current state matches the goal state. """
@@ -88,7 +89,7 @@ def main():
 
     # load random start state onto frontier priority queue
     frontier = queue.PriorityQueue()
-    active_state = np.loadtxt('mp1input1.txt', dtype=np.int32)
+    active_state = np.loadtxt('./samples/mp1input1.txt', dtype=np.int32)
     start_state = PuzzleState(active_state, 0, None)
 
     frontier.put(start_state)
