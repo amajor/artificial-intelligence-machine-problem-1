@@ -18,6 +18,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install numpy
+        pip install parameterized
     - name: Analysing the code with pylint
       run: |
-        pylint --msg-template="$FileDir$/{path}:{line}:{column}:{C}:({symbol}){msg}" mp1.py test_mp1.py
+        pylint ./*.py
