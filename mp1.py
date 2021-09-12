@@ -28,7 +28,7 @@ class PuzzleState:
 
     def _compute_heuristic_cost(self):
         """ TODO: Actually calculate this! """
-        """ Updates the heuristic function value for use in A* """
+        # """ Updates the heuristic function value for use in A* """
         self.hcost = 5
 
     def is_goal(self):
