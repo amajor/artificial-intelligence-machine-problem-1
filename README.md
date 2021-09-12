@@ -1,3 +1,5 @@
+[![Unit Tests](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/python-test.yml/badge.svg)](https://github.com/amajor/artificial-intelligence-machine-problem-1/actions/workflows/python-test.yml)
+
 # Artificial Intelligence 
 ## Machine Problem 1 – A* for Sliding Puzzle
 
@@ -92,7 +94,7 @@ Move 4 ACTION: up
 Number of states visited = 5
 ```
 
----
+----
 
 ## Development
 
@@ -102,10 +104,6 @@ In order to run the tests automatically, we must have a `requirements.txt` file.
 
 This code was edited in PyCharm. It is easy to automatically generate the file.
 
-Open the PyCharm terminal while in your project.
-
-```shell
-pip3 freeze > requirements.txt
-```
+![Tools --> Sync Python Requirements](./docs/images/sync_requirements.png "Sync Requirements")
 
 Commit this to the repository.

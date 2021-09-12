@@ -19,4 +19,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint `ls -R|grep .py$|xargs`
+        pylint --msg-template="$FileDir$/{path}:{line}:{column}:{C}:({symbol}){msg}" mp1.py test_mp1.py

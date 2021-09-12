@@ -3,25 +3,24 @@ Alison Major
 September 11, 2021
 Artificial Intelligence 1 – CPSC 57100
 Fall Semester 2021
-
 Machine Problem 1
-This program implements A* for solving a sliding tile puzzle
 """
 
-import numpy as np
 import queue
+import numpy as np
 
 
 class PuzzleState:
+    """This program implements A* for solving a sliding tile puzzle"""
     SOLVED_PUZZLE = np.arange(9).reshape((3, 3))
 
-    def __init__(self, conf, g, predState):
+    def __init__(self, conf, g, pred_state):
         self.hcost = None
         self.puzzle = conf  # Configuration of the state
         self.gcost = g  # Path cost
         self._compute_heuristic_cost()  # Set heuristic cost
         self.fcost = self.gcost + self.hcost
-        self.pred = predState  # Predecessor state
+        self.pred = pred_state  # Predecessor state
         self.zeroloc = np.argwhere(self.puzzle == 0)[0]
         self.action_from_pred = None
 
@@ -32,6 +31,7 @@ class PuzzleState:
         """ Updates the heuristic function value for use in A* """
 
     def is_goal(self):
+        """ Checks to see if current state matches the goal state. """
         return np.array_equal(PuzzleState.SOLVED_PUZZLE, self.puzzle)
 
     def __eq__(self, other):
@@ -46,6 +46,7 @@ class PuzzleState:
     move = 0
 
     def show_path(self):
+        """ Shows the path by printing each chosen state that leads to the goal. """
         if self.pred is not None:
             self.pred.show_path()
 
@@ -70,7 +71,6 @@ class PuzzleState:
         if direction == 'right':
             print('Can I move right?')
 
-        """ We cannot move in any direction. """
         return False
 
     def gen_next_state(self, direction):
@@ -78,6 +78,7 @@ class PuzzleState:
 
 
 def main():
+    """ Runs the main program. """
     print('Artificial Intelligence')
     print('MP1: A* for Sliding Puzzle')
     print('SEMESTER: FALL 2021, TERM 1')
@@ -86,8 +87,8 @@ def main():
 
     # load random start state onto frontier priority queue
     frontier = queue.PriorityQueue()
-    a = np.loadtxt('mp1input1.txt', dtype=np.int32)
-    start_state = PuzzleState(a, 0, None)
+    active_state = np.loadtxt('mp1input1.txt', dtype=np.int32)
+    start_state = PuzzleState(active_state, 0, None)
 
     frontier.put(start_state)
 
@@ -116,7 +117,8 @@ def main():
                     continue
                 if neighbor not in frontier.queue:
                     frontier.put(neighbor)
-                # If it's already in the frontier, it's guaranteed to have lower cost, so no need to update
+                # If it's already in the frontier, it's guaranteed to have lower cost,
+                # so no need to update.
 
     print('\nNumber of states visited =', num_states)
 
