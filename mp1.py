@@ -32,7 +32,7 @@ class PuzzleState:
         self.hcost = 5
 
     def is_goal(self):
-        """ Checks to see if current state matches the goal state. """
+        """ Checks to see if current state puzzle matches the goal state puzzle. """
         return np.array_equal(PuzzleState.SOLVED_PUZZLE, self.puzzle)
 
     def __eq__(self, other):
@@ -59,24 +59,32 @@ class PuzzleState:
         print(self)
 
     def can_move(self, direction):
-        # pylint: disable=no-self-use
-        """ TODO """
-        if direction == 'up':
-            print('Can I move up?')
+        """ Determines if the blank tile can move in a particular direction. """
+        row = self.zeroloc[0]
+        col = self.zeroloc[1]
 
-        if direction == 'down':
-            print('Can I move down?')
-
-        if direction == 'left':
-            print('Can I move left?')
-
-        if direction == 'right':
-            print('Can I move right?')
-
+        if direction == 'up' and row != 0:
+            return True
+        if direction == 'down' and row != 2:
+            return True
+        if direction == 'left' and col != 0:
+            return True
+        if direction == 'right' and col != 2:
+            return True
         return False
 
     def gen_next_state(self, direction):
         """ TODO """
+        print('puzzle: ', self.puzzle)
+        print(direction)
+        print('puzzle: ', self.puzzle)
+
+        # conf = the new array
+        # g = self.gcost
+        # pred_state = self
+        # next_state = PuzzleState(conf, g, pred_state)
+
+        return self.puzzle
 
 
 def main():
