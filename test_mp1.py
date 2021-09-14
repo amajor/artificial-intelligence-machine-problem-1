@@ -14,8 +14,8 @@ class TestPuzzleState(unittest.TestCase):
     """ Will run tests against modules and functions in the PuzzleState class. """
 
     def setUp(self):
-        active_state = np.loadtxt('./samples/mp1input1.txt', dtype=np.int32)
-        self._puzzle_state = PuzzleState(active_state, 0, None)
+        puzzle_array = np.loadtxt('./samples/mp1input1.txt', dtype=np.int32)
+        self._puzzle_state = PuzzleState(puzzle_array, 0, None)
 
     def test_solved_puzzle_value(self):
         """ Tests is the SOLVED_PUZZLE value matches the desired state. """
@@ -158,13 +158,37 @@ class TestPuzzleState(unittest.TestCase):
         actual_predecessor_action = self._puzzle_state.action_from_predecessor
         self.assertEqual(direction, actual_predecessor_action)
 
-    def test_show_path_start(self):
-        """ Test the output of the main process at its START state. """
+    def test_show_path(self):
+        """ Test the output of the main process at its END state. """
+        # Create the path and capture the output.
         captured_output = io.StringIO()  # Create StringIO object
         sys.stdout = captured_output     # and redirect stdout.
+        self._puzzle_state = self._puzzle_state.gen_next_state('right')
+        self._puzzle_state = self._puzzle_state.gen_next_state('up')
+        self._puzzle_state = self._puzzle_state.gen_next_state('left')
+        self._puzzle_state = self._puzzle_state.gen_next_state('up')
         self._puzzle_state.show_path()   # Call the function.
 
-        expected_output = 'START\n[[3 1 2]\n [4 7 5]\n [0 6 8]]'
+        expected_output = """START
+[[3 1 2]
+ [4 7 5]
+ [0 6 8]]
+Move 1 ACTION: right
+[[3 1 2]
+ [4 7 5]
+ [6 0 8]]
+Move 2 ACTION: up
+[[3 1 2]
+ [4 0 5]
+ [6 7 8]]
+Move 3 ACTION: left
+[[3 1 2]
+ [0 4 5]
+ [6 7 8]]
+Move 4 ACTION: up
+[[0 1 2]
+ [3 4 5]
+ [6 7 8]]"""
         self.assertIn(expected_output, captured_output.getvalue())
 
 
