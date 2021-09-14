@@ -33,7 +33,11 @@ class PuzzleState:
         """ Updates the heuristic function value for use in A*
             using the Manhattan Distance Heuristic. """
         heuristic_value = 0
-        tile_value = 0
+
+        # We do not include tile "0" in this calculation.
+        # The distance of the blank tile is not relevant to our heuristic cost.
+        # Start with tile 1.
+        tile_value = 1
         while tile_value < 9:
             # Determine current position of this number tile.
             current_position = np.argwhere(self.puzzle == tile_value)[0]
@@ -178,14 +182,8 @@ def main():
                 if neighbor not in frontier.queue:
                     frontier.put(neighbor)
 
-    # Number of states visited is includes states that are
-    # not in the most efficient path.
-    print('\nNumber of states visited = ', num_states)
-
-    # Smallest required states are the minimum number of states
-    # that one must visit in order to get from the start state
-    # to the goal state.
-    print('Smallest required states = ', PuzzleState.move)
+    # Number of states visited to find this path.
+    print('\nNumber of states visited =', num_states)
 
 
 if __name__ == "__main__":

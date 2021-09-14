@@ -27,11 +27,11 @@ class TestPuzzleState(unittest.TestCase):
 
     @parameterized.expand([
         ("should have heuristic of 0", [[0, 1, 2], [3, 4, 5], [6, 7, 8]], 0),
-        ("should have heuristic of 2", [[1, 0, 2], [3, 4, 5], [6, 7, 8]], 2),
-        ("should have heuristic of 4", [[2, 0, 1], [3, 4, 5], [6, 7, 8]], 4),
-        ("should have heuristic of 6", [[3, 4, 5], [0, 1, 2], [6, 7, 8]], 6),
-        ("should have heuristic of 12", [[3, 4, 5], [6, 7, 8], [0, 1, 2]], 12),
-        ("should have heuristic of 14", [[3, 4, 5], [7, 6, 8], [0, 1, 2]], 14),
+        ("should have heuristic of 2", [[1, 0, 2], [3, 4, 5], [6, 7, 8]], 1),
+        ("should have heuristic of 4", [[2, 0, 1], [3, 4, 5], [6, 7, 8]], 3),
+        ("should have heuristic of 6", [[3, 4, 5], [0, 1, 2], [6, 7, 8]], 5),
+        ("should have heuristic of 12", [[3, 4, 5], [6, 7, 8], [0, 1, 2]], 10),
+        ("should have heuristic of 14", [[3, 4, 5], [7, 6, 8], [0, 1, 2]], 12),
         ("should have heuristic of 12", [[0, 4, 5], [7, 6, 8], [3, 1, 2]], 12)
     ])
     def test_compute_heuristic_cost(self, _test_name, puzzle, expected_heuristic_cost):
