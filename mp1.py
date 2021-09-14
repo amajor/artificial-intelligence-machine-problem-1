@@ -178,11 +178,13 @@ def main():
                 if neighbor not in frontier.queue:
                     frontier.put(neighbor)
 
-    # Number of states visited is inaccurate;
-    # more states were visited to calculate the moves.
-    # However, the example printout shows count for
-    # number of MOVES (not number of states).
+    # Number of states visited is includes states that are
+    # not in the most efficient path.    
     print('\nNumber of states visited =', num_states)
+    
+    # Smallest required states are the minimum number of states
+    # that one must visit in order to get from the start state
+    # to the goal state.
     # print('Smallest required states =', PuzzleState.move)
 
 
