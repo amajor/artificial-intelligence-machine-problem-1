@@ -22,7 +22,7 @@ class PuzzleState:
         self.puzzle = conf  # Configuration of the state
         self.g_cost = g  # Path cost
         self._compute_heuristic_cost()  # Set heuristic cost
-        self.f_cost = self.g_cost + self.heuristic_cost
+        self.f_cost = self.g_cost + self.heuristic_cost  # Frontier node cost
         self.predecessor = predecessor_state  # Predecessor state
         self.zero_location = np.argwhere(self.puzzle == 0)[0]
         self.action_from_predecessor = None
