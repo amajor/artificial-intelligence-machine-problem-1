@@ -15,12 +15,12 @@ class PuzzleState:
     """This program implements A* for solving a sliding tile puzzle"""
     SOLVED_PUZZLE = np.arange(9).reshape((3, 3))
 
-    def __init__(self, conf, g, pred_state):
+    def __init__(self, conf, g, predecessor_state):
         self.puzzle = conf  # Configuration of the state
         self.gcost = g  # Path cost
         self._compute_heuristic_cost()  # Set heuristic cost
         self.fcost = self.gcost + self.hcost
-        self.pred = pred_state  # Predecessor state
+        self.pred = predecessor_state  # Predecessor state
         self.zeroloc = np.argwhere(self.puzzle == 0)[0]
         self.action_from_pred = None
 
@@ -128,29 +128,30 @@ def main():
 
     num_states = 0
     while not frontier.empty():
-        #  choose state at front of priority queue
+        #  Choose state at front of priority queue.
         next_state = frontier.get()
         num_states = num_states + 1
 
-        #  if goal then quit and return path
+        #  If puzzle matches goal, then quit and return path.
         if next_state.is_goal():
             next_state.show_path()
             break
 
-        # Add state chosen for expansion to closed_set
+        # Add state chosen for expansion to closed_set.
         closed_set.add(next_state)
 
-        # Expand state (up to 4 moves possible)
+        # Expand state (up to 4 moves possible).
         possible_moves = ['up', 'down', 'left', 'right']
         for move in possible_moves:
             if next_state.can_move(move):
                 neighbor = next_state.gen_next_state(move)
                 if neighbor in closed_set:
+                    # If it's already in the frontier,
+                    # it's guaranteed to have lower cost,
+                    # so no need to update.
                     continue
                 if neighbor not in frontier.queue:
                     frontier.put(neighbor)
-                # If it's already in the frontier, it's guaranteed to have lower cost,
-                # so no need to update.
 
     print('\nNumber of states visited =', num_states)
 
