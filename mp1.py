@@ -4,6 +4,9 @@ September 11, 2021
 Artificial Intelligence 1 – CPSC 57100
 Fall Semester 2021
 Machine Problem 1
+
+Full code and test suite available on GitHub:
+https://github.com/amajor/artificial-intelligence-machine-problem-1
 """
 
 import queue
