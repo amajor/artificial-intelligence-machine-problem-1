@@ -51,15 +51,6 @@ class TestPuzzleState(unittest.TestCase):
         actual = self._puzzle_state.is_goal()
         self.assertEqual(expected, actual)
 
-    def test_show_path(self):
-        """ Test the output of the main process. """
-        captured_output = io.StringIO()  # Create StringIO object
-        sys.stdout = captured_output     # and redirect stdout.
-        self._puzzle_state.show_path()   # Call the function.
-
-        expected_output = 'START'
-        self.assertIn(expected_output, captured_output.getvalue())
-
     @parameterized.expand([
         ("position [0 0] cannot move up", [[0, 1, 2], [3, 4, 5], [6, 7, 8]],  False),
         ("position [0 1] cannot move up", [[1, 0, 2], [3, 4, 5], [6, 7, 8]], False),
@@ -162,6 +153,15 @@ class TestPuzzleState(unittest.TestCase):
         self._puzzle_state = self._puzzle_state.gen_next_state(direction)
         actual = self._puzzle_state.puzzle
         numpy.testing.assert_allclose(desired_puzzle, actual)
+
+    def test_show_path(self):
+        """ Test the output of the main process. """
+        captured_output = io.StringIO()  # Create StringIO object
+        sys.stdout = captured_output     # and redirect stdout.
+        self._puzzle_state.show_path()   # Call the function.
+
+        expected_output = 'START'
+        self.assertIn(expected_output, captured_output.getvalue())
 
 
 if __name__ == '__main__':
