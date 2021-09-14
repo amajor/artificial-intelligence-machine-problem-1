@@ -141,13 +141,6 @@ class TestPuzzleState(unittest.TestCase):
         self._puzzle_state = PuzzleState(test_state, 0, None)
         self._puzzle_state = self._puzzle_state.gen_next_state(direction)
         actual = self._puzzle_state.puzzle
-        print('++++++++++++++++++++++++++++++++++++++')
-        print('current_state: ', current_puzzle)
-        print('--------------------------------------')
-        print('actual:        ', actual)
-        print('--------------------------------------')
-        print('desired:       ', desired_puzzle)
-        print('++++++++++++++++++++++++++++++++++++++')
         numpy.testing.assert_allclose(desired_puzzle, actual)
 
 
