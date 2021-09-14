@@ -160,7 +160,7 @@ class TestPuzzleState(unittest.TestCase):
         sys.stdout = captured_output     # and redirect stdout.
         self._puzzle_state.show_path()   # Call the function.
 
-        expected_output = 'START'
+        expected_output = 'START\n[[3 1 2]\n [4 7 5]\n [0 6 8]]'
         self.assertIn(expected_output, captured_output.getvalue())
 
 
