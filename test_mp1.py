@@ -151,11 +151,15 @@ class TestPuzzleState(unittest.TestCase):
         test_state = np.asarray(current_puzzle, dtype=np.int32)
         self._puzzle_state = PuzzleState(test_state, 0, None)
         self._puzzle_state = self._puzzle_state.gen_next_state(direction)
-        actual = self._puzzle_state.puzzle
-        numpy.testing.assert_allclose(desired_puzzle, actual)
 
-    def test_show_path(self):
-        """ Test the output of the main process. """
+        actual_puzzle = self._puzzle_state.puzzle
+        numpy.testing.assert_allclose(desired_puzzle, actual_puzzle)
+
+        actual_predecessor_action = self._puzzle_state.action_from_predecessor
+        self.assertEqual(direction, actual_predecessor_action)
+
+    def test_show_path_start(self):
+        """ Test the output of the main process at its START state. """
         captured_output = io.StringIO()  # Create StringIO object
         sys.stdout = captured_output     # and redirect stdout.
         self._puzzle_state.show_path()   # Call the function.

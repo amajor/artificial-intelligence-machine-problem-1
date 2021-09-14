@@ -126,6 +126,9 @@ class PuzzleState:
         predecessor_state = self
         next_state = PuzzleState(new_puzzle, path_cost, predecessor_state)
 
+        # Set the predecessor's direction being moved.
+        next_state.action_from_predecessor = direction
+
         return next_state
 
 
