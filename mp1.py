@@ -10,7 +10,6 @@ https://github.com/amajor/artificial-intelligence-machine-problem-1
 """
 
 import queue
-from copy import deepcopy
 import numpy as np
 
 
@@ -119,7 +118,7 @@ class PuzzleState:
 
         # Move the zero-location in the direction specified,
         # swapping with the number in the location it moves to.
-        new_puzzle = deepcopy(self.puzzle)
+        new_puzzle = np.copy(self.puzzle)
         new_puzzle[zero_row, zero_col], new_puzzle[swap_row, swap_col] = (
             new_puzzle[swap_row, swap_col], new_puzzle[zero_row, zero_col]
         )
