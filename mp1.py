@@ -183,10 +183,7 @@ def main():
     # more states were visited to calculate the moves.
     # However, the example printout shows count for
     # number of MOVES (not number of states).
-    print('\nNumber of states checked =', num_states)
-
-    # Printing number of moves to match printout example.
-    print('\nNumber of states visited =', PuzzleState.move)
+    print('\nNumber of states visited =', num_states)
 
 
 if __name__ == "__main__":

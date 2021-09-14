@@ -92,5 +92,5 @@ Move 4 ACTION: up
  [3 4 5]
  [6 7 8]]
 
-Number of states visited = 5
+Number of states visited = 7
 ```
