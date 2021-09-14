@@ -180,12 +180,12 @@ def main():
 
     # Number of states visited is includes states that are
     # not in the most efficient path.
-    print('\nNumber of states visited =', num_states)
+    print('\nNumber of states visited = ', num_states)
 
     # Smallest required states are the minimum number of states
     # that one must visit in order to get from the start state
     # to the goal state.
-    # print('Smallest required states =', PuzzleState.move)
+    print('Smallest required states = ', PuzzleState.move)
 
 
 if __name__ == "__main__":
