@@ -28,9 +28,29 @@ class PuzzleState:
         return tuple(self.puzzle.ravel()).__hash__()
 
     def _compute_heuristic_cost(self):
-        """ TODO: Actually calculate this! """
-        # """ Updates the heuristic function value for use in A* using the Manhattan distance heuristic. """
-        self.heuristic_cost = 5
+        """ Updates the heuristic function value for use in A*
+            using the Manhattan Distance Heuristic. """
+        heuristic_value = 0
+        tile_value = 0
+        while tile_value < 9:
+            # Determine current position of this number tile.
+            current_position = np.argwhere(self.puzzle == tile_value)[0]
+
+            # Determine desired position of this number tile.
+            desired_position = np.argwhere(self.SOLVED_PUZZLE == tile_value)[0]
+
+            # Calculate how many rows and columns the tile is from its desired position.
+            row_distance = abs(current_position[0] - desired_position[0])
+            col_distance = abs(current_position[1] - desired_position[1])
+
+            # Calculate heuristic value for this tile and add to total.
+            heuristic_value = heuristic_value + row_distance + col_distance
+
+            # Move to next numeric tile.
+            tile_value += 1
+
+        # Set the current heuristic value.
+        self.heuristic_cost = heuristic_value
 
     def is_goal(self):
         """ Checks to see if current state puzzle matches the goal state puzzle. """

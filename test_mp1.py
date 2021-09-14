@@ -22,9 +22,21 @@ class TestPuzzleState(unittest.TestCase):
         actual = self._puzzle_state.SOLVED_PUZZLE
         numpy.testing.assert_allclose(desired, actual)
 
-    def test_compute_heuristic_cost(self):
-        """ TODO """
-        self.skipTest('Test not yet created')
+    @parameterized.expand([
+        ("should have heuristic of 0", [[0, 1, 2], [3, 4, 5], [6, 7, 8]], 0),
+        ("should have heuristic of 2", [[1, 0, 2], [3, 4, 5], [6, 7, 8]], 2),
+        ("should have heuristic of 4", [[2, 0, 1], [3, 4, 5], [6, 7, 8]], 4),
+        ("should have heuristic of 6", [[3, 4, 5], [0, 1, 2], [6, 7, 8]], 6),
+        ("should have heuristic of 12", [[3, 4, 5], [6, 7, 8], [0, 1, 2]], 12),
+        ("should have heuristic of 14", [[3, 4, 5], [7, 6, 8], [0, 1, 2]], 14),
+        ("should have heuristic of 12", [[0, 4, 5], [7, 6, 8], [3, 1, 2]], 12)
+    ])
+    def test_compute_heuristic_cost(self, _test_name, puzzle, expected_heuristic_cost):
+        """ Tests the heuristic cost of the entire puzzle. """
+        test_state = np.asarray(puzzle, dtype=np.int32)
+        self._puzzle_state = PuzzleState(test_state, 0, None)
+        actual_heuristic_cost = self._puzzle_state.heuristic_cost
+        self.assertEqual(expected_heuristic_cost, actual_heuristic_cost)
 
     @parameterized.expand([
         ("should be exact match", [[0, 1, 2], [3, 4, 5], [6, 7, 8]], True),
