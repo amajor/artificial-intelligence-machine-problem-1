@@ -7,6 +7,7 @@ Machine Problem 1
 """
 
 import queue
+from copy import deepcopy
 import numpy as np
 
 
@@ -74,17 +75,38 @@ class PuzzleState:
         return False
 
     def gen_next_state(self, direction):
-        """ TODO """
-        print('puzzle: ', self.puzzle)
-        print(direction)
-        print('puzzle: ', self.puzzle)
+        """ Generates the next state for the puzzle after moving blank in specified direction. """
+        # Find the current zero-location (blank space).
+        zero_row = self.zeroloc[0]
+        zero_col = self.zeroloc[1]
 
-        # conf = the new array
-        # g = self.gcost
-        # pred_state = self
-        # next_state = PuzzleState(conf, g, pred_state)
+        # Store the zero location values for our swap tile calculations.
+        swap_row = zero_row
+        swap_col = zero_col
 
-        return self.puzzle
+        # Find the value in the appropriate direction.
+        if direction == 'up':
+            swap_row -= 1
+        if direction == 'down':
+            swap_row += 1
+        if direction == 'left':
+            swap_col -= 1
+        if direction == 'right':
+            swap_col += 1
+
+        # Move the zero-location in the direction specified,
+        # swapping with the number in the location it moves to.
+        new_puzzle = deepcopy(self.puzzle)
+        new_puzzle[zero_row, zero_col], new_puzzle[swap_row, swap_col] = (
+            new_puzzle[swap_row, swap_col], new_puzzle[zero_row, zero_col]
+        )
+
+        # Create the new state.
+        path_cost = self.gcost + 1
+        predecessor_state = self
+        next_state = PuzzleState(new_puzzle, path_cost, predecessor_state)
+
+        return next_state
 
 
 def main():

@@ -115,17 +115,17 @@ class TestPuzzleState(unittest.TestCase):
     @parameterized.expand([
         (
             "blank moves up and swaps with 2",
-            'right',
+            'up',
             [[1, 2, 3], [4, 0, 5], [6, 7, 8]],
             [[1, 0, 3], [4, 2, 5], [6, 7, 8]]
         ), (
             "blank moves down and swaps with 7",
-            'right',
+            'down',
             [[1, 2, 3], [4, 0, 5], [6, 7, 8]],
             [[1, 2, 3], [4, 7, 5], [6, 0, 8]]
         ), (
             "blank moves left and swaps with 4",
-            'right',
+            'left',
             [[1, 2, 3], [4, 0, 5], [6, 7, 8]],
             [[1, 2, 3], [0, 4, 5], [6, 7, 8]]
         ), (
@@ -137,9 +137,9 @@ class TestPuzzleState(unittest.TestCase):
     ])
     def test_gen_next_state(self, _test_name, direction, current_puzzle, desired_puzzle):
         """ Test that the next state is generated when given a direction """
-        self.skipTest('Test not yet created')
-        self._puzzle_state.puzzle = current_puzzle
-        self._puzzle_state.gen_next_state(direction)
+        test_state = np.asarray(current_puzzle, dtype=np.int32)
+        self._puzzle_state = PuzzleState(test_state, 0, None)
+        self._puzzle_state = self._puzzle_state.gen_next_state(direction)
         actual = self._puzzle_state.puzzle
         print('++++++++++++++++++++++++++++++++++++++')
         print('current_state: ', current_puzzle)
