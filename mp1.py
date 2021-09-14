@@ -63,7 +63,7 @@ class PuzzleState:
         return self.f_cost < other.f_cost
 
     def __str__(self):
-        return np.str(self.puzzle)
+        return str(self.puzzle)
 
     move = 0
 
