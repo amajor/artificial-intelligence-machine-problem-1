@@ -179,9 +179,9 @@ def main():
                     frontier.put(neighbor)
 
     # Number of states visited is includes states that are
-    # not in the most efficient path.    
+    # not in the most efficient path.
     print('\nNumber of states visited =', num_states)
-    
+
     # Smallest required states are the minimum number of states
     # that one must visit in order to get from the start state
     # to the goal state.
