@@ -65,6 +65,9 @@ Displays the number of states that A* had to visit in order to get to the soluti
   - You will need to make sure you implement the `__hash__` method in your PuzzleState class to do this.
 
 ### Sample Program Output 1
+
+This output is generated when loading the file [./samples/mp1input1.txt](https://github.com/amajor/artificial-intelligence-machine-problem-1/blob/main/samples/mp1input1.txt).
+
 ```
 Artificial Intelligence
 MP1: A* for Sliding Puzzle
@@ -96,6 +99,9 @@ Number of states visited = 7
 ```
 
 ### Sample Program Output 2
+
+This output is generated when loading the file [./samples/mp1input2.txt](https://github.com/amajor/artificial-intelligence-machine-problem-1/blob/main/samples/mp1input2.txt).
+
 ```
 Artificial Intelligence
 MP1: A* for Sliding Puzzle
