@@ -17,20 +17,20 @@ class PuzzleState:
 
     def __init__(self, conf, g, predecessor_state):
         self.puzzle = conf  # Configuration of the state
-        self.gcost = g  # Path cost
+        self.g_cost = g  # Path cost
         self._compute_heuristic_cost()  # Set heuristic cost
-        self.fcost = self.gcost + self.hcost
-        self.pred = predecessor_state  # Predecessor state
-        self.zeroloc = np.argwhere(self.puzzle == 0)[0]
-        self.action_from_pred = None
+        self.f_cost = self.g_cost + self.heuristic_cost
+        self.predecessor = predecessor_state  # Predecessor state
+        self.zero_location = np.argwhere(self.puzzle == 0)[0]
+        self.action_from_predecessor = None
 
     def __hash__(self):
         return tuple(self.puzzle.ravel()).__hash__()
 
     def _compute_heuristic_cost(self):
         """ TODO: Actually calculate this! """
-        # """ Updates the heuristic function value for use in A* """
-        self.hcost = 5
+        # """ Updates the heuristic function value for use in A* using the Manhattan distance heuristic. """
+        self.heuristic_cost = 5
 
     def is_goal(self):
         """ Checks to see if current state puzzle matches the goal state puzzle. """
@@ -40,7 +40,7 @@ class PuzzleState:
         return np.array_equal(self.puzzle, other.puzzle)
 
     def __lt__(self, other):
-        return self.fcost < other.fcost
+        return self.f_cost < other.f_cost
 
     def __str__(self):
         return np.str(self.puzzle)
@@ -49,20 +49,20 @@ class PuzzleState:
 
     def show_path(self):
         """ Shows the path by printing each chosen state that leads to the goal. """
-        if self.pred is not None:
-            self.pred.show_path()
+        if self.predecessor is not None:
+            self.predecessor.show_path()
 
         if PuzzleState.move == 0:
             print('START')
         else:
-            print('Move', PuzzleState.move, 'ACTION:', self.action_from_pred)
+            print('Move', PuzzleState.move, 'ACTION:', self.action_from_predecessor)
         PuzzleState.move = PuzzleState.move + 1
         print(self)
 
     def can_move(self, direction):
         """ Determines if the blank tile can move in a particular direction. """
-        row = self.zeroloc[0]
-        col = self.zeroloc[1]
+        row = self.zero_location[0]
+        col = self.zero_location[1]
 
         if direction == 'up' and row != 0:
             return True
@@ -77,8 +77,8 @@ class PuzzleState:
     def gen_next_state(self, direction):
         """ Generates the next state for the puzzle after moving blank in specified direction. """
         # Find the current zero-location (blank space).
-        zero_row = self.zeroloc[0]
-        zero_col = self.zeroloc[1]
+        zero_row = self.zero_location[0]
+        zero_col = self.zero_location[1]
 
         # Store the zero location values for our swap tile calculations.
         swap_row = zero_row
@@ -102,7 +102,7 @@ class PuzzleState:
         )
 
         # Create the new state.
-        path_cost = self.gcost + 1
+        path_cost = self.g_cost + 1
         predecessor_state = self
         next_state = PuzzleState(new_puzzle, path_cost, predecessor_state)
 
@@ -119,8 +119,8 @@ def main():
 
     # load random start state onto frontier priority queue
     frontier = queue.PriorityQueue()
-    active_state = np.loadtxt('./samples/mp1input1.txt', dtype=np.int32)
-    start_state = PuzzleState(active_state, 0, None)
+    puzzle_array = np.loadtxt('./samples/mp1input1.txt', dtype=np.int32)
+    start_state = PuzzleState(puzzle_array, 0, None)
 
     frontier.put(start_state)
 
