@@ -101,39 +101,43 @@ Artificial Intelligence
 MP1: A* for Sliding Puzzle
 SEMESTER: [put semester and year here]
 NAME: [your name here]
-START [[1 2 5]
-[6 3 8]
+
+START
+[[1 2 5]
+ [6 3 8]
  [0 4 7]]
 Move 1 ACTION: up
 [[1 2 5]
-[0 3 8]
+ [0 3 8]
  [6 4 7]]
 Move 2 ACTION: right
 [[1 2 5]
-[3 0 8]
+ [3 0 8]
  [6 4 7]]
 Move 3 ACTION: down
 [[1 2 5]
-[3 4 8]
+ [3 4 8]
  [6 0 7]]
 Move 4 ACTION: right
 [[1 2 5]
-[3 4 8]
+ [3 4 8]
  [6 7 0]]
 Move 5 ACTION: up
 [[1 2 5]
-[3 4 0]
+ [3 4 0]
  [6 7 8]]
 Move 6 ACTION: up
 [[1 2 0]
-[3 4 5]
+ [3 4 5]
  [6 7 8]]
 Move 7 ACTION: left
 [[1 0 2]
-[3 4 5]
+ [3 4 5]
  [6 7 8]]
 Move 8 ACTION: left
 [[0 1 2]
-[3 4 5] [6 7 8]]
+ [3 4 5]
+ [6 7 8]]
+
 Number of states visited = 13
 ```
