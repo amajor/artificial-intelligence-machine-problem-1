@@ -183,6 +183,7 @@ def main():
     # However, the example printout shows count for
     # number of MOVES (not number of states).
     print('\nNumber of states visited =', num_states)
+    # print('Smallest required states =', PuzzleState.move)
 
 
 if __name__ == "__main__":
